@@ -5,7 +5,7 @@ server:
          secure: true
     error:
        whitelabel:
-         enabled:false
+         enabled: false
     environment-type: DEV
 spring:
     profiles:
