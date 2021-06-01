@@ -9,7 +9,7 @@ server:
       timeout: 1800
     error:
        whitelabel:
-         enabled=false
+         enabled: false
     environment-type: STAGING_N1
     contextPath: "/connect/res"
 spring:
