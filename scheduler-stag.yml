@@ -1,0 +1,92 @@
+server:
+    session:
+       timeout: 1800
+       cookie:
+          secure: false
+    error:
+      whitelabel:
+          enabled:false
+    environment-type: STAGING_N1
+    contextPath: "/ssuiadmin"
+spring:
+    profiles:
+        active: prod
+    datasource:
+        dataSourceClassName: oracle.jdbc.pool.OracleDataSource
+        url: jdbc:oracle:thin:@hostname.hq.emirates.com:6516:sidd
+        dataapplicationName: 
+        serverName: 
+        username: UserName
+        password: Password
+    jpa:
+        database-platform: org.hibernate.dialect.Oracle12cDialect
+        database: ORACLE
+        openInView: false
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+    mail:
+        baseUrl: http://localhost:8080
+    thymeleaf:
+        mode: XHTML
+        cache: true
+        viewNames: error
+metrics:
+    jmx.enabled: true
+    graphite:
+        enabled: false
+        host: localhost
+        port: 2003
+        prefix: jobshced
+egspring:
+    scheduler:
+        loadOnStartup: true
+        schedulersToStart: "EGSCronScheduler"
+        batch.table.prefix: EGS_BCH_
+cache-couchbase:
+  cacheHosts: "lnxdevvm727"
+  cacheBucketName: ssui_dev_bucket
+  cacheBucketPassword: ssui_dev_bucket
+jms-call-integration:
+  server: tcp://hqlinuxdevbl105.hq.emirates.com:7225
+  username: ssui_usr
+  password: ssui_usr
+  topic: SSUI.BT.EK.TMAIN
+ssui:
+    hostingCity: DXB
+    serverUrl: "http://localhost:8080"
+    disableCsrf: true
+    enableConcurrentUsrChk: true
+    concurrentUser: 5
+    allowedCROSDomains: "http://localhost:9004"
+    excludedCROSUrls: "/payment/processCPGPaymentResponseCallback,/sales/booking/processTPCallBack,/payment/processNBDPaymentResponseCallback,/gadsend_temp.html,/app/rest/account,/rewards/profile/getLicenseDocument"
+    emsAlertConfig:
+      paymentReviewProcessLog: /apps/jboss/jboss-eap-6.4.0/paymentReviewProcessLog.txt
+    scheduler:
+      userId: "SCHUSER"
+      dutyCode: "SU"
+      agentId: "PS"
+      pos: "DXB"
+      cityCode: "DXB"
+      role: "ADMIN"
+      staffId: "s111111"
+      sessionId: "SCHSESSION"
+      workspaceNo: "WS1"
+session-couchbase:
+    timeout-in-seconds: 2500
+    persistent:
+        namespace: testapplication
+        couchbase:
+            hosts: "dolnxprodvm1464,dolnxprodvm1465,dolnxprodvm1466,dolnxprodvm1467,dolnxprodvm1468"
+            bucket-name: ssui_prod
+            password: customer
+        principal-sessions:
+            enabled: false
+    in-memory:
+        enabled: false
