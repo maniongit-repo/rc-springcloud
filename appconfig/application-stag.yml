@@ -1,0 +1,78 @@
+management:
+    security:
+        enabled: false
+server:
+    port: 8180
+    session:
+      cookie:
+        secure: false
+      timeout: 1800
+    error:
+       whitelabel:
+         enabled=false
+    environment-type: STAGING_N1
+    contextPath: "/connect/res"
+spring:
+     profiles:
+        active: stag,local-ping
+cjp:
+  proxy:
+    timeout: 10000
+  serverUrl: https://stgservices.emirates.dev/resconnect/cjp
+  oauth2:
+    client:
+        grantType: client_credentials
+        clientId: resconnect_cjp_client
+        clientSecret: j6y0abgnLrnn89S0C2imZPK565J3hJvN05dHj7f6feYiGcqdp77CqKup40hvdGb8
+        accessTokenUri: https://ssostg.emirates.dev/as/token.oauth2
+session-couchbase:
+  timeout-in-seconds: 2500
+  persistent:
+    namespace: ssuiapplication
+    couchbase:
+      #hosts: "dolnxprodvm1063,dolnxprodvm1064,dolnxprodvm1065"
+      #bucket-name: ssui_empact_stg
+      #password: ssui_empact_stg
+      #hosts: "lnxdevvm902,lnxdevvm903,lnxdevvm904,lnxdevvm905,lnxdevvm906"
+      #hosts: "dolnxprodvm1464,dolnxprodvm1465,dolnxprodvm1466,dolnxprodvm1467,dolnxprodvm1468"
+      hosts: "dolnxprodvm1464,dolnxprodvm1465,dolnxprodvm1466,dolnxprodvm1467,dolnxprodvm1468"
+      bucket-name: ssui_prod
+      password: customer
+    principal-sessions:
+      enabled: true
+  in-memory:
+    enabled: false
+logging.level.com.github.mkopylec.sessioncouchbase: error
+#logging.level.org.springframework: DEBUG
+cache-couchbase:
+  #cacheHosts: "dolnxprodvm1063,dolnxprodvm1064,dolnxprodvm1065"
+  #cacheBucketName: ssui_empact_stg
+  #cacheBucketPassword: ssui_empact_stg
+jms-call-integration:
+  #server: tcp://dolinuxbl812.hq.emirates.com:7229
+  server: "tcp://dolinuxbl812.hq.emirates.com:7229,tcp://dolinuxbl812.hq.emirates.com:7229,tcp://dotibemsstg002.hq.emirates.com:7229,tcp://hqtibemsstg002.hq.emirates.com:7229,tcp://dotibemsstg003.hq.emirates.com:7229,tcp://hqtibemsstg003.hq.emirates.com:7229,tcp://dotibemsprd003.hq.emirates.com:8801,tcp://dotibemsprd004.hq.emirates.com:8801,tcp://hqtibemsprd003.hq.emirates.com:8801,tcp://hqtibemsprd004.hq.emirates.com:8801"
+  username: ssui_usr
+  password: ssui_usr
+  topic: SSUI.BT.EK.TMAIN
+ssui:
+    wsrsConnectionTimeout: 10000
+    wsrsReadTimeout: 60000
+    hostingCity: DXB
+    serverUrl: "https://stgappln.emirates.com/connect/res"
+    #serverUrl: "http://staging.ssui.emirates.com/connect/res"
+    disableCsrf: true
+    concurrentUser: 20
+    enableConcurrentUsrChk: false
+    excludedCROSUrls: "/payment/processCPGPaymentResponseCallback,/sales/booking/processTPCallBack,/payment/processNBDPaymentResponseCallback,/gadsend_temp.html,/app/rest/account,/error,/rewards/profile/getLicenseDocument"
+    emsAlertConfig:
+      paymentReviewProcessLog: /apps/jboss/jboss-eap-6.4.0/paymentReviewProcessLog.txt
+    notification:
+       batchsize: 10
+info:
+    app:
+      name: "Connect"
+      version: "1.2.0"
+file:
+  limit:
+    uploadperfile: 1500000
+    maxupload: 4500000
