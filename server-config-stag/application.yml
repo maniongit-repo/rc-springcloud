@@ -14,7 +14,7 @@ server:
     contextPath: "/connect/res"
 spring:
      profiles:
-        active: stag,local-ping
+        active: stag,local-ping1
 cjp:
   proxy:
     timeout: 10000
